@@ -8,10 +8,11 @@
 	"license": "MIT",
 	"type": "project",
 	"require": {
-		"php": ">=7.0.0",
-		"fideloper/proxy": "~3.3",
+		"php": ">=7.3.0",
+		"fideloper/proxy": "^4.3",
 		"fzaninotto/faker": "^1.7",
-		"laravel/framework": "5.5.*",
+		"ixudra/curl": "^6.19",
+		"laravel/framework": "^6.18",
 		"laravel/tinker": "~1.0"
 	},
 	"require-dev": {
