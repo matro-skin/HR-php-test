@@ -11,6 +11,8 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/weather/{city}', 'WeatherController')
+	->name('weather.city');
+
+Route::view('/', 'pages.welcome')
+	->name('index.home');

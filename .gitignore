@@ -11,7 +11,4 @@ npm-debug.log
 yarn-error.log
 .env
 /.project
-/public/css/app.css
-/public/js/app.js
 /public/fonts
-/public/mix-manifest.json

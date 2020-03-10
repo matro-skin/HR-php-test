@@ -23,9 +23,8 @@ class RouteServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
-
         parent::boot();
+	    Route::model('city', \App\City::class);
     }
 
     /**
