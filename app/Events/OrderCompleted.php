@@ -15,6 +15,8 @@ class OrderCompleted
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
+    public $order;
+
     /**
      * Create a new event instance.
      *
@@ -22,7 +24,7 @@ class OrderCompleted
      */
     public function __construct(Order $order)
     {
-        //
+        $this->order = $order;
     }
 
     /**
