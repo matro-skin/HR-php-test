@@ -47,7 +47,7 @@
 				<table class="table table-striped table-hover text-center mb-0">
 					<thead class="thead-dark">
 						<tr>
-							<th scope="col">{{ __('ID заказа') }}</th>
+							<th scope="col" class="text-right">{{ __('ID заказа') }}</th>
 							<th scope="col">{{ __('Партнер') }}</th>
 							<th scope="col">{{ __('Стоимость') }}</th>
 							<th scope="col">{{ __('Состав заказа') }}</th>
@@ -57,7 +57,7 @@
 					<tbody>
 					@forelse($orders as $order )
 						<tr>
-							<th scope="row">
+							<th scope="row" class="text-right">
 								<a href="{{ route('orders.edit', [ 'order' => $order->id ]) }}" target="_blank">
 									<span>#{{ $order->id }}</span>
 								</a>

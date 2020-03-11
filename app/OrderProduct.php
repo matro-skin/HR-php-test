@@ -15,13 +15,4 @@ class OrderProduct extends Pivot
 
 	public $timestamps = true;
 
-	protected $appends = [
-		'total',
-	];
-
-	public function getTotalAttribute()
-	{
-		return $this->quantity*$this->price;
-	}
-
 }

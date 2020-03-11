@@ -72,4 +72,13 @@ class Order extends Model
 		}
 	}
 
+	public static function statuses()
+	{
+		return [
+			self::STATUS_CREATED => __('Новый'),
+			self::STATUS_APPROVED => __('Подтвержден'),
+			self::STATUS_COMPLETED => __('Завершен'),
+		];
+	}
+
 }

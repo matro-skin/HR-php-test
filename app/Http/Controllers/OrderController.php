@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\OrderRequest;
 use App\Order;
+use App\Partner;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
+use Mockery\Exception;
 
 class OrderController extends Controller
 {
@@ -119,11 +122,12 @@ class OrderController extends Controller
      * Show the form for editing the specified resource.
      *
      * @param  \App\Order  $order
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\View\View
      */
     public function edit(Order $order)
     {
-        //
+    	$partners = Partner::orderBy('name')->get();
+    	return view('orders.edit', compact('order','partners'));
     }
 
     /**
@@ -131,11 +135,24 @@ class OrderController extends Controller
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  \App\Order  $order
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
-    public function update(Request $request, Order $order)
+    public function update(OrderRequest $request, Order $order)
     {
-        //
+
+        try {
+	        $order->update( $request->validated() );
+        }
+        catch (Exception $e) {
+        	report($e);
+	        return redirect()->back()
+	                         ->withInput()
+	                         ->withErrors([ __('Данные заказа не обновлены') ]);
+        }
+
+        return redirect()->back()
+                         ->with('success', __('Данные заказа обновлены'));
+
     }
 
     /**
@@ -148,4 +165,5 @@ class OrderController extends Controller
     {
         //
     }
+
 }

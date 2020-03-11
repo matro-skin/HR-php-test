@@ -26,3 +26,13 @@ $(document).on('click', '#orderTabs a.page-link', function (e) {
 	let path = $(this).attr('href');
 	loadOrders(path);
 });
+
+$('.needs-validation').each(function(i, form) {
+	$(form).on('submit', function(e) {
+		if (form.checkValidity() === false) {
+			e.preventDefault();
+			e.stopPropagation();
+		}
+		$(form).addClass('was-validated');
+	});
+});
