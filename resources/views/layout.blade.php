@@ -10,13 +10,16 @@
 		<link href="{{ asset('/css/app.css') }}?t={{ filemtime( public_path('/css/app.css') )  }}" rel="stylesheet">
 		<link href="{{ asset('/css/style.css') }}?t={{ filemtime( public_path('/css/style.css') ) }}" rel="stylesheet">
 	</head>
-	<body class="d-flex flex-column h-100">
+	<body class="d-flex flex-column h-100" data-path="/{{ request()->path() }}" data-route="{{ request()->route()->getName() }}">
 		@include('layout.header')
 		<main role="main" class="flex-shrink-0 py-3 py-md-4">
 			<div class="container">
-				@section('content')
-					#content
-				@show
+				<h1>@yield('title', __('Home Page'))</h1>
+				<div id="content">
+					@section('content')
+						Main page Content
+					@show
+				</div>
 			</div>
 		</main>
 		@include('layout.footer')

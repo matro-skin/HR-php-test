@@ -16,3 +16,6 @@ Route::get('/weather/{city}', 'WeatherController')
 
 Route::view('/', 'pages.welcome')
 	->name('index.home');
+
+Route::resource('/orders', 'OrderController');
+Route::resource('/products', 'ProductController');

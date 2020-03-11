@@ -1,5 +1,9 @@
 @extends('layout')
 
+@section('title')
+	{{ __('Погода') }}
+@endsection
+
 @section('content')
 
 	<div class="row">

@@ -10,7 +10,13 @@
 			<div class="collapse navbar-collapse" id="navbarCollapse">
 				<ul class="navbar-nav mr-auto">
 					<li class="nav-item">
-						<a class="nav-link" href="{{ route('weather.city', [ 'city' => 1 ]) }}">Погода в Брянске</a>
+						<a class="nav-link" href="{{ route('weather.city', [ 'city' => 1 ]) }}">{{ __('Погода в Брянске') }}</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="{{ route('orders.index') }}">{{ __('Заказы') }}</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="{{ route('products.index') }}">{{ __('Продукты') }}</a>
 					</li>
 				</ul>
 			</div>
