@@ -6,7 +6,6 @@ use App\Events\OrderCompleted as Event;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Support\Facades\Notification;
-use Mockery\Exception;
 
 class OrderCompleted
 {
@@ -52,7 +51,7 @@ class OrderCompleted
 	    try {
 		    Notification::send( $recipients, new \App\Notifications\OrderCompleted( $this->order ) );
 	    }
-	    catch (Exception $e) {
+	    catch (\Exception $e) {
 	    	report($e);
 	    }
 

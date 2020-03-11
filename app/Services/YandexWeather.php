@@ -4,7 +4,6 @@ namespace App\Services;
 
 use App\City;
 use Ixudra\Curl\Facades\Curl;
-use Mockery\Exception;
 
 class YandexWeather {
 
@@ -48,7 +47,7 @@ class YandexWeather {
 			                      ->asJson()
 			                      ->get();
 		}
-		catch (Exception $e) {
+		catch (\Exception $e) {
 			report($e);
 		}
 

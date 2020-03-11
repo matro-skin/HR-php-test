@@ -2,19 +2,33 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\ProductRequest;
 use App\Product;
 use Illuminate\Http\Request;
 
 class ProductController extends Controller
 {
+
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\View\View | \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+
+        $products = Product::orderBy('name')->paginate();
+
+        $view = view('products.index', compact('products'));
+
+	    if( $request->ajax() ) {
+		    return response([
+			    'data' => $view->renderSections()['content'],
+		    ]);
+	    }
+
+        return $view;
     }
 
     /**
@@ -65,11 +79,35 @@ class ProductController extends Controller
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  \App\Product  $product
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\Response | \Illuminate\Http\RedirectResponse
      */
-    public function update(Request $request, Product $product)
+    public function update(ProductRequest $request, Product $product)
     {
-        //
+
+//    	dd( $request->validated() );
+
+	    try {
+		    $product->update( $request->validated() );
+	    }
+	    catch (\Exception $e) {
+		    report($e);
+		    if( $request->ajax() ) {
+		    	abort(400, __('Данные товара не обновлены'));
+		    }
+		    return redirect()->back()
+		                     ->withInput()
+		                     ->withErrors([ __('Данные товара не обновлены') ]);
+	    }
+
+	    if( $request->ajax() ) {
+	    	return response([
+	    		'message' => __('Данные товара обновлены'),
+		    ]);
+	    }
+
+	    return redirect()->back()
+	                     ->with('success', __('Данные товара обновлены'));
+
     }
 
     /**
@@ -82,4 +120,5 @@ class ProductController extends Controller
     {
         //
     }
+
 }

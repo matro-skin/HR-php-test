@@ -44,7 +44,7 @@
 			{{ $orders->appends([ 'tab' => $tab ])->links() }}
 
 			<div class="table-responsive">
-				<table class="table table-striped table-hover text-center mb-0">
+				<table class="table table-striped table-hover text-center">
 					<thead class="thead-dark">
 						<tr>
 							<th scope="col" class="text-right">{{ __('ID заказа') }}</th>

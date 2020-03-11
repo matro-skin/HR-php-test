@@ -7,7 +7,6 @@ use App\Order;
 use App\Partner;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
-use Mockery\Exception;
 
 class OrderController extends Controller
 {
@@ -143,7 +142,7 @@ class OrderController extends Controller
         try {
 	        $order->update( $request->validated() );
         }
-        catch (Exception $e) {
+        catch (\Exception $e) {
         	report($e);
 	        return redirect()->back()
 	                         ->withInput()
